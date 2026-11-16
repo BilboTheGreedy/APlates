@@ -19,7 +19,7 @@ local defaults = {
 	friendlyNames = false,
 }
 
-ACore.New(ADDON, ns, { db = "APlatesDB", defaults = defaults })
+ACore.New(ADDON, ns, { db = "APlatesDB", defaults = defaults, profile = true })
 
 ACore.Register({
 	name = "APlates",
