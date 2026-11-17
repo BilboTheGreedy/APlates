@@ -17,6 +17,8 @@ local defaults = {
 	raidIcon = true,
 	quest = true,
 	friendlyNames = false,
+	tank = false,
+	fade = false,
 }
 
 ACore.New(ADDON, ns, { db = "APlatesDB", defaults = defaults, profile = true })
@@ -27,6 +29,7 @@ ACore.Register({
 	slash = "/aplates",
 	desc = "nameplates",
 	toggle = function() ns.OpenOptions() end,
+	options = function() return ns.Entries() end,
 })
 
 local queue = {}
@@ -101,6 +104,8 @@ SlashCmdList["APLATES"] = function(msg)
 		ns.db.enabled = msg == "on"
 		ns:Fire("OPTIONS")
 		ns.Print(ns.db.enabled and "on" or "off")
+	elseif msg == "auras" then
+		ns.AuraReport("target")
 	elseif msg == "reset" then
 		for k, v in pairs(defaults) do ns.db[k] = v end
 		ns:Fire("OPTIONS")
